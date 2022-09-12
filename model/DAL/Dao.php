@@ -1,16 +1,5 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Offres
- *
- * @author 1703728
- */
+// Instanciation de la Classe DAO --> BDD //
 abstract class Dao
 {
 
@@ -33,13 +22,10 @@ abstract class Dao
     abstract public function getAll();
 
     //Récupérer plus d'info sur 1 item à l'aide de son id
-    abstract public function getOne($id);
+    abstract public function getOne($idFilm);
 
     //Ajouter un item
     abstract public function add($data);
-
-    //del un item
-    abstract public function deleteOne($id);
 
     public function set_bdd($_bdd)
     {

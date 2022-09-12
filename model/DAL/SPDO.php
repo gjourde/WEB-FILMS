@@ -1,5 +1,5 @@
 <?php
-
+// Creation de la Classe SPDO //
 class SPDO
 {
     /**
@@ -29,7 +29,7 @@ class SPDO
      */
     private function __construct()
     {
-        $this->PDOInstance = new PDO("mysql:host=localhost:3306;dbname=offres", "user", "user");
+        $this->PDOInstance = new PDO("mysql:host=localhost:3306;dbname=cinema", "root", "root");
     }
 
     /**
