@@ -1,0 +1,10 @@
+body{
+   color : rgb(226, 226, 240); 
+   background-color: black;
+   font-family: 'Ubuntu', sans-serif;
+}
+
+header, footer{
+   color : rgb(102, 102, 114); 
+   background-color: white;
+}

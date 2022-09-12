@@ -1,8 +1,17 @@
-Hello world
-test test!
-modif test
-nouvelle modif
-Marc mdr
-Blabla
-Kris la Modif
-Je vous aimes les gars !
+<?php
+
+// Initialisation de l'environnement
+include './config/config.init.php';
+
+include _CTRL_ . 'header.php';
+
+// Gestion de Routing
+if (isset($_GET['action']) && file_exists(_CTRL_ . $_GET['action'] . '.php')) {
+    include _CTRL_ . $_GET['action'] . '.php';
+} elseif (isset($_GET['action']) && !file_exists(_CTRL_ . $_GET['action'] . '.php')) {
+    include _CTRL_ . 'erreur.php';
+} else {
+    include _CTRL_ . 'offres.php';
+}
+
+include _CTRL_ . 'footer.php';

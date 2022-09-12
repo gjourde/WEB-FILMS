@@ -1,0 +1,18 @@
+<div>
+	{% if status is not defined %}
+		<form action="creer_offre" method="post">
+			<input type="text" name="title">
+			<input type="text" name="description">
+			<button type="submit">Créer une offre</button>
+		</form>
+	{% else %}
+		<p>{{status}}
+			:</p>
+		{% if offre is defined %}
+			{{offre.get_title}}
+			:
+			{{offre.get_description}}
+		{% endif %}
+	{% endif %}
+</div>
+<a href="offres">Retour au liste des offres</a>

@@ -1,0 +1,15 @@
+<div>
+	{% for offer in alloffers %}
+		<form action="delete_offre" method="post">
+			<button type="submit">Delete</button>
+			<label for="title">
+				<b>{{offer.get_title}}:</b>
+			</label>
+			<label for="description">
+				<b>{{offer.get_description}}</b>
+			</label>
+			<input value="{{offer.get_id}}" name="id" type="hidden">
+		</form>
+	{% endfor %}
+</div>
+<a href="creer_offre">Créer une nouvelle offre</a>
