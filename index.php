@@ -27,8 +27,8 @@ if (isset($_SESSION["email"])) {
 
         if (($email == $_POST["email"]) && ($mdp == $_POST["mdp"])) {
             echo "ok";
-            //$_SESSION['email'] = $email;
-            //$_SESSION['userName'] = $userName;
+            $_SESSION['email'] = $email;
+            $_SESSION['userName'] = $userName;
             include _CTRL_ . 'affichageFilms.php';
         } else {
             include _CTRL_ . 'connexion.php';
