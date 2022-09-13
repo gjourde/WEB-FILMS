@@ -1,0 +1,26 @@
+<div>
+	{% if status is not defined %}
+		<form action="ajouter_film" method="post">
+			<input type="text" name="titre du film">
+			<input type="text" name="realisateur">
+			<input type="text" name="affiche">
+			<input type="text" name="annee">
+			<button type="submit">Ajouter le Film</button>
+		</form>
+	{% else %}
+		<p>{{status}}
+			:</p>
+		{% if film is defined %}
+			{{film.getTitre}}
+			:
+			{{film.getRealisateur}}
+			:
+			{{film.getAffiche}}
+			:
+			{{film.getAnnee}}
+		{% endif %}
+	{% endif %}
+</div>
+<button>
+	<a href="affichageFilms">Retour a la liste des Films</a>
+</button>
