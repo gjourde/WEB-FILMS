@@ -1,4 +1,4 @@
 <?php
 //On affiche le template Twig correspondant
 
-echo $twig->render('header.html.twig',['username' => 'user']);
+echo $twig->render('header.html.twig',['username' => $_SESSION['userName'] ]);
