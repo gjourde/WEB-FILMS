@@ -39,5 +39,4 @@ if (isset($_SESSION["email"])) {
         echo "connexion";
     }
 }
-
 include _CTRL_ . 'footer.php';
