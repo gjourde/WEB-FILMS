@@ -1,8 +1,9 @@
 
 <?php
 
-if (isset($_SESSION["email"]) and isset($_SESSION["mdp"])) {
-    include _CTRL_ . 'connexion.php';
+if (isset($_POST["email"]) and isset($_POST["mdp"])) {
+    $UserDao = new UserDAO();
+    $User = $UserDAO->getUser($_POST["email"]);
 } else {
-    include _CTRL_ . 'connexion.php';
+    # code...
 }
