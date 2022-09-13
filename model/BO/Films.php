@@ -59,21 +59,21 @@ class Films
 
     public function setRealisateur($realisateur)
     {
+
         $this->realisateur = $realisateur;
     }
 
     public function setAffiche($affiche)
     {
-        $this->affiche = $affiche;
+        // Fonction affichage d'une image par defaut si $affiche = " NULL " //
+        if ($affiche == null) {
+            $this->affiche = 'https://www.wallpaperuse.com/vifr/iimhow/';
+        } else
+            $this->affiche = $affiche;
     }
 
     public function setAnnee($annee)
     {
         $this->annee = $annee;
     }
-
-    // Fonction affichage de l'image si " NULL " //
-    // appeller dans le setter affichage //
-
-
 }
