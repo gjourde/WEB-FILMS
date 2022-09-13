@@ -6,9 +6,35 @@
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="view/web/css/base.css" media="screen"/>
 		<link rel="shortcut icon" href="view/web/img/favicon.ico"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<header>
-			Ceci est notre header
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+				<div class="container-fluid">
+					<a class="navbar-brand " href="#">Médiathèque</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarText">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Films</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="erreur">Création</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Compte</a>
+							</li>
+						</ul>
+						<span class="navbar-text" id="username">
+							Username
+						</span>
+					</div>
+				</div>
+			</nav>
+
 		</header><hr></body>
 </html>
