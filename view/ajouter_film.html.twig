@@ -14,11 +14,11 @@
 	{% else %}
 		<p>{{status}}
 			:</p>
-		{% if film is defined %}
-			<p>{{film.getTitre}}</p>
-			<p>{{film.getRealisateur}}</p>
-			<p>{{film.getAffiche}}</p>
-			<p>{{film.getAnnee}}</p>
+		{% if ajoutFilm is defined %}
+			<p>{{ajoutFilm.getTitre}}</p>
+			<p>{{ajoutFilm.getRealisateur}}</p>
+			<p>{{ajoutFilm.getAffiche}}</p>
+			<p>{{ajoutFilm.getAnnee}}</p>
 		{% endif %}
 	{% endif %}
 
