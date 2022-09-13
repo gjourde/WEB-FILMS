@@ -14,12 +14,12 @@
 class FilmsDAO extends Dao
 {
 
-    //Récupérer tous les films //
+    // Récupérer tous les films avec les Jointure affichées //
     public function getAll()
     {
-        //On définit la bdd pour la fonction
-
-        $query = $this->_bdd->prepare("SELECT idFilm, titre, realisateur, affiche, annee FROM films");
+        //On définit la bdd pour la fonction //
+        // Probleme de doublon de Film //
+        $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
         $query->execute();
         $films = array();
 
@@ -34,7 +34,7 @@ class FilmsDAO extends Dao
     public function add($data)
     {
 
-        $valeurs = ['titre' => $data->getTitre(), 'realisateur' => $data->getRealisteur(), 'affiche' => $data->getAffiche(), 'annee' => $data->getAnnee()];
+        $valeurs = ['titre' => $data->getTitre(), 'realisateur' => $data->getRealisateur(), 'affiche' => $data->getAffiche(), 'annee' => $data->getAnnee()];
         $requete = 'INSERT INTO films (titre, realisateur, affiche, annee) VALUES (:titre , :realisateur , :affiche , :annee)';
         $insert = $this->_bdd->prepare($requete);
         if (!$insert->execute($valeurs)) {
@@ -45,7 +45,7 @@ class FilmsDAO extends Dao
         }
     }
 
-    //Récupérer plus d'info sur 1 Film
+    //Récupérer plus d'info sur 1 Film //
 
     public function getOne($idFilm)
     {
@@ -56,11 +56,40 @@ class FilmsDAO extends Dao
         $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
         return ($films);
     }
-    // Fonction pour delete une offre //
+    // Fonction pour delete un Film  //
     public function deleteOne($idFilm): int
     {
         $query = $this->_bdd->prepare('DELETE FROM offers WHERE offers.id = :idOffer');
         $query->execute(array(':idFilm' => $idFilm));
         return ($query->rowCount());
+    }
+    // Requetage pour avoir tous les acteurs et leurs roles //
+    public function getAllActeur()
+    {
+
+        $query = $this->_bdd->prepare("SELECT idFilm , personnage, nom, prenom FROM role INNER JOIN acteurs ON role.idActeur = acteurs.idActeur ");
+        $query->execute();
+        $acteurs = array();
+
+        while ($data = $query->fetch()) {
+            // a Confirmer //
+            array_push($acteurs, array('idFilm' => $data['idFilm'], $data['nom'], $data['prenom'], $data['personnage']));
+        }
+        return ($acteurs);
+    }
+
+    public function getActeurFilm($idFilm)
+    {
+        //meme requete que getAllActeur renvoie requete avec idFilm where $idFilm = acteur.idFilm // 
+        // a Confirmer //
+        $query = $this->_bdd->prepare("SELECT idFilm , personnage, nom, prenom FROM role INNER JOIN acteurs ON role.idActeur = acteurs.idActeur WHERE $idFilm = acteurs.idFilm");
+        $query->execute();
+        $acteurs = array();
+
+        while ($data = $query->fetch()) {
+            // a Confirmer //
+            array_push($acteurs, array('idFilm' => $data['idFilm'], $data['nom'], $data['prenom'], $data['personnage']));
+        }
+        return ($acteurs);
     }
 }

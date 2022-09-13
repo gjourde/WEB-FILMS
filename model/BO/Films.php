@@ -4,14 +4,15 @@
 class Films
 {
 
-
+    private $idFilm;
     private $titre;
     private $realisateur;
     private $affiche;
     private $annee;
 
-    public function __construct(string $titre, string $realisateur, $affiche, int $annee)
+    public function __construct(int $idFilm, string $titre, string $realisateur, $affiche, int $annee)
     {
+        $this->idFilm = $idFilm;
         $this->titre = $titre;
         $this->realisateur = $realisateur;
         $this->affiche = $affiche;
@@ -19,6 +20,10 @@ class Films
     }
 
     // GETTER //
+    public function getIdFilm()
+    {
+        return $this->idFilm;
+    }
 
     public function getTitre()
     {
@@ -42,6 +47,11 @@ class Films
 
     // SETTER //
 
+    public function setIdFilm($idFilm)
+    {
+        $this->idFilm = $idFilm;
+    }
+
     public function setTitre($titre)
     {
         $this->titre = $titre;
@@ -64,4 +74,6 @@ class Films
 
     // Fonction affichage de l'image si " NULL " //
     // appeller dans le setter affichage //
+
+
 }

@@ -7,28 +7,28 @@
 
 class UserDAO extends Dao
 {
-    //Récupérer tous les films //
+    //Récupérer tous les Users //
     public function getAll()
     {
         //On définit la bdd pour la fonction
 
-        $query = $this->_bdd->prepare("SELECT idFilm, titre, realisateur, affiche, annee FROM films");
+        $query = $this->_bdd->prepare("SELECT idUser, userName, email, password FROM user");
         $query->execute();
-        $films = array();
+        $user = array();
 
         while ($data = $query->fetch()) {
-            $films[] = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+            $user[] = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
         }
-        return ($films);
+        return ($user);
     }
 
-    //Ajouter un Film ICI //
+    //Ajouter un User ICI //
 
     public function add($data)
     {
 
-        $valeurs = ['titre' => $data->getTitre(), 'realisateur' => $data->getRealisteur(), 'affiche' => $data->getAffiche(), 'annee' => $data->getAnnee()];
-        $requete = 'INSERT INTO films (titre, realisateur, affiche, annee) VALUES (:titre , :realisateur , :affiche , :annee)';
+        $valeurs = ['idUser' => $data->getIdUser(), 'userName' => $data->getUserName(), 'email' => $data->getEmail(), 'password' => $data->getPassword()];
+        $requete = 'INSERT INTO user (idUser, userName, email, password) VALUES (:idUser , :userName , :email , :password)';
         $insert = $this->_bdd->prepare($requete);
         if (!$insert->execute($valeurs)) {
             //print_r($insert->errorInfo());
@@ -38,22 +38,25 @@ class UserDAO extends Dao
         }
     }
 
-    //Récupérer plus d'info sur 1 Film
-    public function getOne($idFilm)
+    //Récupérer plus d'info sur 1 User
+    public function getOne($idUser)
     {
 
-        $query = $this->_bdd->prepare('SELECT * FROM films WHERE films.id = :idFilm')->fetch(PDO::FETCH_ASSOC);
-        $query->execute(array(':idFilm' => $idFilm));
+        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.id = :idUser')->fetch(PDO::FETCH_ASSOC);
+        $query->execute(array(':idUser' => $idUser));
         $data = $query->fetch();
-        $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
-        return ($films);
+        $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
+        return ($user);
     }
+    // Fonction pour tester si un Utilisateur a bien un email //
 
-    // Fonction pour delete une offre //
-    public function deleteOne($idFilm): int
+    public function getUser($email)
     {
-        $query = $this->_bdd->prepare('DELETE FROM offers WHERE offers.id = :idOffer');
-        $query->execute(array(':idFilm' => $idFilm));
-        return ($query->rowCount());
+        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.email = :email')->fetch(PDO::FETCH_ASSOC);
+        $query->execute(array(':email' => $email));
+        $data = $query->fetch();
+        $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
+        // Voir si Fetch return un resultat si null //
+        return ($user);
     }
 }
