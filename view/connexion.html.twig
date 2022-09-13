@@ -1,15 +1,39 @@
-<div class="container">
-	<form action="" method="post">
-		<div class="row shadow-lg p-3 mb-5 bg-body rounded">
-			<div class="col-3 mb-3">
-				<input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
-			</div>
-			<div class="col-3">
-				<input name="mdp" type="password" class="form-control" id="mdp" placeholder="">
-			</div>
-			<div class="col-3">
-				<button type="submit" class="btn btn-primary mb-3">Sign in</button>
+<form action="" method="post">
+	<div class="container">
+		<div class="row">
+			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+				<h2>Connexion</h2>
+				<div class="row">
+					<div class="col-10 mb-2">
+						{% if email is not defined %}
+							<input name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
+						{% else %}
+							<input value={{email}} name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
+						{% endif %}
+						<input name="mdp" type="password" class="form-control mb-1" id="mdp" placeholder="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col mb-1">
+						<div class="form-check">
+							<input name="remember" class="form-check-input mb-2" type="checkbox" value="" id="Check">
+							<label class="form-check-label" for="flexCheckDefault">
+								Remember me
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col mb-3">
+						<button type="submit" class="btn btn-primary mb-3">Sign in</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col mb-3">
+						<a href="creer_compte">ou créer un compte</a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</form>
-</div>
+	</div>
+</form>
