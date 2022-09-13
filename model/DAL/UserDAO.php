@@ -49,11 +49,6 @@ class UserDAO extends Dao
         $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
         return ($films);
     }
-    // Fonction pour delete une offre //
-    public function deleteOne($idFilm): int
-    {
-        $query = $this->_bdd->prepare('DELETE FROM offers WHERE offers.id = :idOffer');
-        $query->execute(array(':idFilm' => $idFilm));
-        return ($query->rowCount());
-    }
+    
+    
 }
