@@ -15,7 +15,7 @@ if (isset($_SESSION["email"])) {
         include _CTRL_ . 'affichageFilms.php';
     }
 } else {
-    if (isset($_POST["email"]) and isset($_POST["mdp"]) and isset($_POST["remember"])) {
+    if (isset($_POST["email"]) and isset($_POST["mdp"])) {
         $userDao = new UserDAO();
         $user = $userDao->getUser($_POST["email"]);
         $userName = $user->getUserName();
@@ -27,9 +27,9 @@ if (isset($_SESSION["email"])) {
 
         if (($email == $_POST["email"]) && ($mdp == $_POST["mdp"])) {
             echo "ok";
-            $_SESSION['email'] = $email;
-            $_SESSION['userName'] = $userName;
-            $_SESSION['remember'] = $_POST["remember"];
+            //$_SESSION['email'] = $email;
+            //$_SESSION['userName'] = $userName;
+            //$_SESSION['remember'] = $_POST["remember"];
             include _CTRL_ . 'affichageFilms.php';
         } else {
             include _CTRL_ . 'connexion.php';
