@@ -13,8 +13,7 @@ if (isset($_SESSION["email"])) {
         include _CTRL_ . 'erreur.php';
     } else {
         include _CTRL_ . 'affichageFilms.php';
-    }
-} else {
+}} else {
     include _CTRL_ . 'connexion.php';
 }
 
