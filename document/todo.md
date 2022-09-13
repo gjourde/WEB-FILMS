@@ -8,6 +8,7 @@ TODO :
 - [ ] Vue header, footer, erreur.twig (avec paramètre) => darko
 - [ ] Vue affichageFilms.twig
 - [ ] Controller connexion.php/vue connexion.twig + erreur => Guillaume
-- [ ] Faire le remember me en $_SESSION => Guillaume
+  $_SESSION["email"] + $_SESSION["mdp"]
+- [ ] Faire le "remember me" en $_SESSION => Guillaume
 - [ ] Controller cree_compte + vue + erreur 
 - [ ] ...
