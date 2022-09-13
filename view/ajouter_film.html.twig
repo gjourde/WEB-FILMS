@@ -2,7 +2,10 @@
 {# Voir erreur si pas de saisie dans les champs #}
 {# Faire le Bootstrap #}
 	<div>
-		<div class="container"> {% if status is not defined %}
+		<div class="container text-center"> {% if status is not defined %}
+			<h2>
+				Ajouter un Film dans la Médiathèque
+			</h2>
 			<form action="ajouter_film" method="post">
 				<input type="text" name="idFilm" placeholder="ID du film" required>
 				<input type="text" name="titre" placeholder="Titre du film" required>
