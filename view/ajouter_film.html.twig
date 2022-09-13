@@ -1,13 +1,14 @@
-{# A corriger #}
 {# Creation Formulaire d'ajout de Film #}
+{# Voir erreur si pas de saisie dans les champs #}
+{# Faire le Bootstrap #}
 	<div>
 		{% if status is not defined %}
 			<form action="ajouter_film" method="post"> <div class="container">
-				<input type="text" name="idFilm">
-				<input type="text" name="titre">
-				<input type="text" name="realisateur">
-				<input type="text" name="affiche">
-				<input type="text" name="annee">
+				<input type="text" name="idFilm" placeholder="ID du film">
+				<input type="text" name="titre" placeholder="Titre du film">
+				<input type="text" name="realisateur" placeholder="Réalisateur">
+				<input type="text" name="affiche" placeholder="Lien image">
+				<input type="text" name="annee" placeholder="Année de réalisation">
 				<button type="submit">Ajouter le Film</button>
 			</div>
 		</form>
@@ -17,13 +18,16 @@
 		{% if film is defined %}
 			<p>{{film.getTitre}}</p>
 			<p>{{film.getRealisateur}}</p>
-			<p>{{film.getAffiche}}</p>
+			<p><img src="{{film.getAffiche}}" class="d-block w-100" alt="{{film.getAffiche}}"></p>
 			<p>{{film.getAnnee}}</p>
 		{% endif %}
 	{% endif %}
+	<div>
 
-	<button>
-		<a href="affichageFilm" style="text-decoration : none;">
-			Retour</a>
-	</button>
+		<button>
+			<a href="affichageFilms" style="text-decoration : none;">
+				Retour</a>
+		</button>
+
+	</div>
 </div>
