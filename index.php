@@ -29,7 +29,6 @@ if (isset($_SESSION["email"])) {
             echo "ok";
             //$_SESSION['email'] = $email;
             //$_SESSION['userName'] = $userName;
-            //$_SESSION['remember'] = $_POST["remember"];
             include _CTRL_ . 'affichageFilms.php';
         } else {
             include _CTRL_ . 'connexion.php';
