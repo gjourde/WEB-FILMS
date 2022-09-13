@@ -5,15 +5,14 @@
 
 			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-inner">
+
 					<div class="carousel-item active">
-						<img src="..." class="d-block w-100" alt="...">
+						<img src="https://via.placeholder.com/150/000000/FFFFFF/?text=Vos films préferés ici.." class="d-block w-100" alt="...">
 					</div>
 
 					{% for film in allFilms %}
 						<div class="carousel-item">
 							<img src="{{film.getAffiche}}" class="d-block w-100" alt="{{film.getAffiche}}">
-						</div>
-						<div>
 							<p>{{film.getTitre}}</p>
 							<p>{{film.getRealisateur}}</p>
 							<p>{{film.getAnnee}}</p>
