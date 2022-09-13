@@ -1,10 +1,6 @@
 
 <?php
 
-//ATTENTION RIEN N'EST FAIT JUSTE DE LA RECOPIE DE FILMDAO
-//ATTENTION RIEN N'EST FAIT JUSTE DE LA RECOPIE DE FILMDAO
-//ATTENTION RIEN N'EST FAIT JUSTE DE LA RECOPIE DE FILMDAO
-
 class UserDAO extends Dao
 {
     //Récupérer tous les Users //
@@ -42,7 +38,7 @@ class UserDAO extends Dao
     public function getOne($idUser)
     {
 
-        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.id = :idUser')->fetch(PDO::FETCH_ASSOC);
+        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.idUser = :idUser')->fetch(PDO::FETCH_ASSOC);
         $query->execute(array(':idUser' => $idUser));
         $data = $query->fetch();
         $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);

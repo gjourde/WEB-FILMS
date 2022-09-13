@@ -2,10 +2,10 @@
 <?php
 
 if (isset($_POST["email"]) and isset($_POST["mdp"])) {
-    $UserDao = new UserDAO();
-    $User = $UserDAO->getUser($_POST["email"]);
-    if ($User != null) {
-        $_SESSION['email'] = $User->getEmail();
+    $userDao = new UserDAO();
+    $user = $userDao->getUser($_POST["email"]);
+    if ($user != null) {
+        $_SESSION['email'] = $user->getEmail();
         //include _CTRL_ . 'index.php';
     } else {
         //erreur
