@@ -48,7 +48,7 @@ class UserDAO extends Dao
 
     public function getUser($email)
     {
-        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.email = :email')->fetch(PDO::FETCH_ASSOC);
+        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.email = :email');
         $query->execute(array(':email' => $email));
         $data = $query->fetch();
         $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);

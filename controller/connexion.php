@@ -6,7 +6,7 @@ if (isset($_POST["email"]) and isset($_POST["mdp"])) {
     $user = $userDao->getUser($_POST["email"]);
     if ($user != null) {
         $_SESSION['email'] = $user->getEmail();
-        //include _CTRL_ . 'index.php';
+        include _CTRL_ . 'index.php';
     } else {
         //erreur
     }
