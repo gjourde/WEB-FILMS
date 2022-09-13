@@ -13,8 +13,27 @@ if (isset($_SESSION["email"])) {
         include _CTRL_ . 'erreur.php';
     } else {
         include _CTRL_ . 'affichageFilms.php';
-}} else {
-    include _CTRL_ . 'connexion.php';
+    }
+} else {
+    if (isset($_POST["email"]) and isset($_POST["mdp"])) {
+        $userDao = new UserDAO();
+        $user = $userDao->getUser($_POST["email"]);
+        $email = $user->getEmail();
+        $mdp = $user->getPassword();
+        echo $email . " " . $mdp . "<br>";
+        echo $_POST["email"] . " " . $_POST["mdp"] . "<br>";
+        if (($email == $_POST["email"]) && ($mdp == $_POST["mdp"])) {
+            echo "ok";
+            //$_SESSION['email'] = $email;
+            include _CTRL_ . 'affichageFilms.php';
+        } else {
+            include _CTRL_ . 'connexion.php';
+            echo "pas ok";
+        }
+    } else {
+        include _CTRL_ . 'connexion.php';
+        echo "connexion";
+    }
 }
 
 include _CTRL_ . 'footer.php';
