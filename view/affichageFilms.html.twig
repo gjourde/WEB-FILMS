@@ -1,25 +1,24 @@
-<div>
-	<div class="container w-50">
+<div class="container w-50">
+	<div class="container w-50" style="height:auto;">
 		<div class="row">
 
 
 			<div id="carouselExampleControls" class="carousel slide w-100" data-bs-ride="carousel">
 				<div class="carousel-inner">
 
-					<div class="carousel-item active">
-						<img src="https://via.placeholder.com/150/000000/FFFFFF/?text=Vos films préferés ici.." class="d-block w-50" style="width: 450px; height:auto;" alt="...">
+					<div class="carousel-item active w-100">
+						<img src="https://via.placeholder.com/150/000000/FFFFFF/?text=Vos films préferés ici.." class="d-block w-100" style="height:auto;" alt="...">
 					</div>
 
 					{% for film in allFilms %}
-						<div class="carousel-item w-100">
-							<img src="{{film.getAffiche}}" class="d-block center" style="width:450px; height:auto;" alt="{{film.getAffiche}}">
+						<div class="carousel-item w-100 text-center">
+							<img src="{{film.getAffiche}}" class="d-block center w-100" style="height:auto;" alt="{{film.getAffiche}}">
 							<p>{{film.getTitre}}</p>
 							<p>{{film.getRealisateur}}</p>
 							<p>{{film.getAnnee}}</p>
 						</div>
 					</p>
 				{% endfor %}
-
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
