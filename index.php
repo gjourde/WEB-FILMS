@@ -29,6 +29,9 @@ if (isset($_SESSION["email"])) {
             echo "ok";
             $_SESSION['email'] = $email;
             $_SESSION['userName'] = $userName;
+            if (isset($_POST["remember"])) {
+                setcookie("cookieEmail", $email);
+            }
             include _CTRL_ . 'affichageFilms.php';
         } else {
             include _CTRL_ . 'connexion.php';
