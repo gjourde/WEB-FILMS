@@ -3,8 +3,8 @@
 	<div>
 		{% if status is not defined %}
 			<form action="ajouter_film" method="post"> <div class="container">
-				<input type="text" name="ID film">
-				<input type="text" name="titre du film">
+				<input type="text" name="idFilm">
+				<input type="text" name="titre">
 				<input type="text" name="realisateur">
 				<input type="text" name="affiche">
 				<input type="text" name="annee">
@@ -14,16 +14,16 @@
 	{% else %}
 		<p>{{status}}
 			:</p>
-		{% if ajoutFilm is defined %}
-			<p>{{ajoutFilm.getTitre}}</p>
-			<p>{{ajoutFilm.getRealisateur}}</p>
-			<p>{{ajoutFilm.getAffiche}}</p>
-			<p>{{ajoutFilm.getAnnee}}</p>
+		{% if film is defined %}
+			<p>{{film.getTitre}}</p>
+			<p>{{film.getRealisateur}}</p>
+			<p>{{film.getAffiche}}</p>
+			<p>{{film.getAnnee}}</p>
 		{% endif %}
 	{% endif %}
 
 	<button>
-		<a href="index" style="text-decoration : none;">
+		<a href="affichageFilm" style="text-decoration : none;">
 			Retour</a>
 	</button>
 </div>
