@@ -11,13 +11,10 @@
 		<p>{{status}}
 			:</p>
 		{% if film is defined %}
-			{{film.getTitre}}
-			:
-			{{film.getRealisateur}}
-			:
-			{{film.getAffiche}}
-			:
-			{{film.getAnnee}}
+			<p>{{film.getTitre}}</p>
+			<p>{{film.getRealisateur}}</p>
+			<p>{{film.getAffiche}}</p>
+			<p>{{film.getAnnee}}</p>
 		{% endif %}
 	{% endif %}
 </div>
