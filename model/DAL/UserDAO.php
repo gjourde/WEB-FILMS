@@ -39,7 +39,6 @@ class UserDAO extends Dao
     }
 
     //Récupérer plus d'info sur 1 Film
-
     public function getOne($idFilm)
     {
 
@@ -49,6 +48,17 @@ class UserDAO extends Dao
         $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
         return ($films);
     }
+<<<<<<< HEAD
     
     
+=======
+
+    // Fonction pour delete une offre //
+    public function deleteOne($idFilm): int
+    {
+        $query = $this->_bdd->prepare('DELETE FROM offers WHERE offers.id = :idOffer');
+        $query->execute(array(':idFilm' => $idFilm));
+        return ($query->rowCount());
+    }
+>>>>>>> 06d46ebca0e12add800d63cceb4e1263a5559702
 }
