@@ -58,8 +58,9 @@ class FilmsDAO extends Dao
     }
     // Fonction pour delete un Film  //
     public function deleteOne($idFilm): int
+    // A coder //
     {
-        $query = $this->_bdd->prepare('DELETE FROM offers WHERE offers.id = :idOffer');
+        $query = $this->_bdd->prepare('DELETE FROM films WHERE films.idFilm = :idFilm');
         $query->execute(array(':idFilm' => $idFilm));
         return ($query->rowCount());
     }
