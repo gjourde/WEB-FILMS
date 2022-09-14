@@ -22,11 +22,34 @@ class FilmsDAO extends Dao
         $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
         $query->execute();
         $films = array();
-
         while ($data = $query->fetch()) {
-            $films[] = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+            $roles = $this->getRole(($data['idFilm']));
+            $films[] = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
         }
         return ($films);
+    }
+    // Recuperation des role avec l'acteur //
+    public function getRole($idFilm)
+    {
+        $query = $this->_bdd->prepare('SELECT * FROM role 
+        WHERE idFilm = :idFilm');
+        $query->execute(array(':idFilm' => $idFilm));
+        $roles = array();
+        while ($data = $query->fetch()) {
+            $acteur = $this->getActeur($data['idActeur']);
+            $roles[] = new Role($acteur, $data['idFilm'], $data['personnage'], $data['idRole']);
+        }
+        return ($roles);
+    }
+
+    public function getActeur($idActeur)
+    {
+        $query = $this->_bdd->prepare('SELECT * FROM acteurs 
+        WHERE idActeur = :idActeur');
+        $query->execute(array(':idActeur' => $idActeur));
+        $data = $query->fetch();
+        $acteur = new Acteurs($data['idActeur'], $data['nom'], $data['prenom']);
+        return $acteur;
     }
 
     //Ajouter un Film ICI //

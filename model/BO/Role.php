@@ -4,13 +4,13 @@
 
 class Role
 {
+    private $acteur;
     private $idRole;
     private $personnage;
-    private $acteur;
     private $idFilm;
 
 
-    public function __construct($idRole = null, string $personnage, $acteur, $idFilm = null)
+    public function __construct($acteur, $idFilm, string $personnage, $idRole = null)
     {
 
         $this->idRole = $idRole;
