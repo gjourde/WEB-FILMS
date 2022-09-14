@@ -5,17 +5,17 @@
 				<form action="" method="post">
 					<h2>Connexion</h2>
 					<div class="row">
-						{% if mdp is defined %}
-							<div class="col-10 mb-2">
+						<div class="col-10 mb-2">
+							{% if mdp is defined %}
 								<label class="form-label text-danger">Identifiant ou le mot de passe incorrect</label>
-							</label>
-						{% endif %}
-						{% if email is not defined %}
-							<input name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
-						{% else %}
-							<input value={{email}} name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
-						{% endif %}
-						<input name="mdp" type="password" class="form-control mb-1" id="mdp" placeholder="">
+							{% endif %}
+							{% if email is not defined %}
+								<input name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
+							{% else %}
+								<input value={{email}} name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
+							{% endif %}
+							<input name="mdp" type="password" class="form-control mb-1" id="mdp" placeholder="">
+						</div>
 					</div>
 					<div class="row">
 						<div class="col mb-1">
