@@ -12,23 +12,28 @@ if (isset($_SESSION['email'])) {
     if (isset($_POST["email"]) and isset($_POST["mdp"])) {
         $userDao = new UserDAO();
         $user = $userDao->getUser($_POST["email"]);
-        $userName = $user->getUserName();
-        $email = $user->getEmail();
-        $mdp = $user->getPassword();
-        $id = $user->getIdUser();
+        if ($user != null) {
+            $userName = $user->getUserName();
+            $email = $user->getEmail();
+            $mdp = $user->getPassword();
+            $id = $user->getIdUser();
 
-        echo $email . " " . $mdp . "<br>";
-        echo $_POST["email"] . " " . $_POST["mdp"] . "<br>";
+            echo $email . " " . $mdp . "<br>";
+            echo $_POST["email"] . " " . $_POST["mdp"] . "<br>";
 
-        if (($email == $_POST["email"]) && ($mdp == $_POST["mdp"])) {
-            echo "ok";
-            $_SESSION['email'] = $email;
-            $_SESSION['userName'] = $userName;
-            $_SESSION['idUser'] = $id;
-            if (isset($_POST["remember"])) {
-                setcookie("cookieEmail", $email);
+            if (($email == $_POST["email"]) && ($mdp == $_POST["mdp"])) {
+                echo "ok";
+                $_SESSION['email'] = $email;
+                $_SESSION['userName'] = $userName;
+                $_SESSION['idUser'] = $id;
+                if (isset($_POST["remember"])) {
+                    setcookie("cookieEmail", $email);
+                }
+                header('location:affichageFilms');
+            } else {
+                echo $twig->render('connexion.html.twig', ['mdp' => 'true']);
+                echo "pas ok";
             }
-            header('location:affichageFilms');
         } else {
             echo $twig->render('connexion.html.twig', ['mdp' => 'true']);
             echo "pas ok";
