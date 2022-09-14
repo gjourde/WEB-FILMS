@@ -1,10 +1,15 @@
-<div class="container">
-	<div class="row">
-		<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
-			<form action="" method="post">
-				<h2>Connexion</h2>
-				<div class="row">
-					<div class="col-10 mb-2">
+{% if status is not defined %}
+	<div class="container">
+		<div class="row">
+			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+				<form action="" method="post">
+					<h2>Connexion</h2>
+					<div class="row">
+						{% if mdp is defined %}
+							<div class="col-10 mb-2">
+								<label class="form-label text-danger">Identifiant ou le mot de passe incorrect</label>
+							</label>
+						{% endif %}
 						{% if email is not defined %}
 							<input name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
 						{% else %}
@@ -12,28 +17,36 @@
 						{% endif %}
 						<input name="mdp" type="password" class="form-control mb-1" id="mdp" placeholder="">
 					</div>
-				</div>
-				<div class="row">
-					<div class="col mb-1">
-						<div class="form-check">
-							<input name="remember" class="form-check-input mb-2" type="checkbox" value="rememberMe" id="Check">
-							<label class="form-check-label" for="flexCheckDefault">
-								Remember me
-							</label>
+					<div class="row">
+						<div class="col mb-1">
+							<div class="form-check">
+								<input name="remember" class="form-check-input mb-2" type="checkbox" value="rememberMe" id="Check">
+								<label class="form-check-label" for="flexCheckDefault">
+									Remember me
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col mb-3">
-						<button type="submit" class="btn btn-primary mb-3">Sign in</button>
+					<div class="row">
+						<div class="col mb-3">
+							<button type="submit" class="btn btn-primary mb-3">Sign in</button>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col mb-3">
-						<a href="creer_compte">ou créer un compte</a>
+					<div class="row">
+						<div class="col mb-3">
+							<a href="creer_compte">ou créer un compte</a>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
+{% else %}
+	<div class="container">
+		<div class="row">
+			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+				<label class="form-label text-danger">Une utilisateur est déjà connecté</label>
+			</div>
+		</div>
+	</div>
+{% endif %}
