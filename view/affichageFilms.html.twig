@@ -14,43 +14,64 @@
 			<div class="col-6 offset-3">
 				<form class="d-flex " role="search">
 					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Rechercher</button>
+					<button class="btn btn-outline-dark" type="submit">Rechercher</button>
 				</div>
 			</form>
 		</div>
 	</div>
-</div>
-<div class="container w-50 mt-5 mb-5">
-	<div class="container w-50" style="height:auto;">
-		<div class="row">
-			<div id="carouselExampleControls" class="carousel slide w-100" data-bs-ride="carousel">
-				<div class="carousel-inner">
 
-					<div class="carousel-item active w-100">
-						<img src="https://via.placeholder.com/150/000000/FFFFFF/?text=Vos films préferés ici.." class="d-block w-100" style="height:auto;" alt="...">
-					</div>
+	<div class="container  w-50 mt-5 mb-5">
+		<div class="container w-80 " style="height:auto;">
+			<div class="row">
+				<div id="carouselExampleControls" class="carousel slide w-100" data-bs-ride="carousel">
+					<div class="carousel-inner">
 
-					{% for film in allFilms %}
-						<div class="carousel-item w-100 text-center">
-							<img src="{{film.getAffiche}}" class="d-block center w-100" style="height:auto;" alt="{{film.getAffiche}}">
-							<p>{{film.getTitre}}</p>
-							<p>{{film.getRealisateur}}</p>
-							<p>{{film.getAnnee}}</p>
+						<div class="carousel-item active w-100">
+							<div class="row">
+								<div class="col-6">
+									<img src="https://via.placeholder.com/150/000000/FFFFFF/?text=Vos films préferés ici.." class="d-block w-100" style="height:auto;" alt="...">
+								</div>
+
+							</div>
 						</div>
+						{% for film in allFilms %}
+							<div class="carousel-item w-100 text-center">
+								<div class="row">
+									<div class="col-6">
+										<img src="{{film.getAffiche}}" class="d-block center w-100" style="height:auto;" alt="{{film.getAffiche}}">
+									</div>
+									<div class="col-6">
+										<h3>{{film.getTitre}}</h3>
+										<p>Realisateur:
+											{{film.getRealisateur}}</p>
+										<p>Annee:
+											{{film.getAnnee}}</p>
 
-					{% endfor %}
+										{% for acteur in allActeur %}
+											<p>Acteurs:
+												{{acteur.nom}}</p>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+
+					</div>
+					<button
+						class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						{# <span class="carousel-control-prev-icon" aria-hidden="true"></span> #}
+						<span style="color:grey;">PREVIOUS</span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button
+						class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						{# <span class="carousel-control-next-icon" aria-hidden="true"></span> #}
+						<span style="color:grey;" aria-hidden="true">NEXT</span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
+
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-
-
 		</div>
 	</div>
 </div>
