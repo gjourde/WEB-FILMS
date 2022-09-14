@@ -2,36 +2,38 @@
 {# Voir erreur si pas de saisie dans les champs #}
 {# Faire le Bootstrap #}
 	<div>
-		<div class="container text-center"> {% if status is not defined %}
-			<h2>
-				Ajouter un Film dans la Médiathèque
-			</h2>
-			<form action="ajouter_film" method="post">
-				<input type="text" name="idFilm" placeholder="ID du film" required>
-				<input type="text" name="titre" placeholder="Titre du film" required>
-				<input type="text" name="realisateur" placeholder="Réalisateur" required>
-				<input type="text" name="affiche" placeholder="Lien image">
-				<input type="text" name="annee" placeholder="Année de réalisation" required>
-				<button type="submit">Ajouter le Film</button>
+		<div class="container text-center w-80"> {% if status is not defined %}
+			<div class="row">
+				<h2>
+					Ajouter un Film dans la Médiathèque
+				</h2>
 
-			</form>
+				<form action="ajouter_film" method="post">
+					<input type="text" name="idFilm" placeholder="ID du film" required>
+					<input type="text" name="titre" placeholder="Titre du film" required>
+					<input type="text" name="realisateur" placeholder="Réalisateur" required>
+					<input type="text" name="affiche" placeholder="Lien image">
+					<input type="text" name="annee" placeholder="Année de réalisation" required>
+					<button type="button" class="btn btn-primary mx-3 mb-1">Ajouter un film</button>
+
+				</form>
+
+			</div>
 		</div>
-	{% else %}
-		<p>{{status}}
-			:</p>
-		{% if film is defined %}
-			<p>{{film.getTitre}}</p>
-			<p>{{film.getRealisateur}}</p>
-			<p><img src="{{film.getAffiche}}" class="d-block w-100" alt="{{film.getAffiche}}"></p>
-			<p>{{film.getAnnee}}</p>
-		{% endif %}
-	{% endif %}
-	<div>
-
-		<button>
-			<a href="affichageFilms" style="text-decoration : none;">
-				Retour</a>
-		</button>
-
 	</div>
-</div>
+{% else %}
+	<p>{{status}}
+		:</p>
+	{% if film is defined %}
+		<p>{{film.getTitre}}</p>
+		<p>{{film.getRealisateur}}</p>
+		<p><img src="{{film.getAffiche}}" class="d-block w-100" style="height:auto;" alt="{{film.getAffiche}}"></p>
+		<p>{{film.getAnnee}}</p>
+	{% endif %}
+{% endif %}
+<div class="container text-center mt-5">
+
+	<button>
+		<a href="affichageFilms" class="text-reset text-decoration-none">Retour</a>
+
+	</button>
