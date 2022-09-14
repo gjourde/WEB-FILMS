@@ -1,7 +1,7 @@
 <?php
 // Creation de la classe Acteurs //
 
-// Extends Film ??? //
+
 class Acteurs
 {
     private $idActeur;

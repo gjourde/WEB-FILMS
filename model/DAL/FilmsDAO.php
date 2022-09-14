@@ -64,22 +64,17 @@ class FilmsDAO extends Dao
         $query->execute(array(':idFilm' => $idFilm));
         return ($query->rowCount());
     }
-    // Requetage pour avoir tous les acteurs et leurs roles //
-    public function getAllActeur()
+    // Requete pour afficher les acteurs et leurs role par rapport a l'idFilm //
+    public function ActeurFilm($idFilm)
     {
-
-        $query = $this->_bdd->prepare("SELECT idActeur, nom, prenom FROM acteurs");
-        $query->execute();
-        $acteurs = array();
-
-        return ($acteurs);
-    }
-    public function getAllRole()
-    {
-        $query = $this->_bdd->prepare("SELECT idRole, personnage FROM role");
-        $query->execute();
-        $role = array();
-
-        return ($role);
+        $listeActeur = [];
+        $query = $this->_bdd->prepare('SELECT idFilm, nom, prenom, acteurs.idActeur, personnage, idRole FROM role 
+        INNER JOIN acteurs ON role.idActeur = acteurs.idActeur
+        WHERE idFilm = :idFilm');
+        $query->execute(array(':idFilm' => $idFilm));
+        while ($data = $query->fetch()) {
+            $listeActeur[] = new Role($data['idRole'], $data['personnage'], $data['nom'], $data['prenom'], $data['idFilm']);
+        }
+        return ($listeActeur);
     }
 }
