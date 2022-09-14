@@ -47,11 +47,18 @@
 										<p>Annee:
 											{{film.getAnnee}}</p>
 
+										<p>Acteurs:
+										</p>
+										{% for role in film.getTabRole %}
 
-										{% for acteur in allActeur %}
-											<p>Acteurs:
-												{{acteur}}</p>
+											{{role.acteur.getNom}}
+											{{role.acteur.getPrenom}}
+											:
+											<b>{{role.getPersonnage}}</b>
+											<br>
+
 										{% endfor %}
+
 									</div>
 								</div>
 							</div>

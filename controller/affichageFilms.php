@@ -4,7 +4,7 @@
 $filmsDao = new FilmsDAO();
 // /* @var $alloffers type */
 $allFilms = $filmsDao->getAll();
-//print_r($allFilms);//
+// print_r($allFilms);
 
 // print_r($allActeur);
 //On affiche le template Twig correspondant
