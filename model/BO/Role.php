@@ -6,18 +6,16 @@ class Role
 {
     private $idRole;
     private $personnage;
-    private $nom;
-    private $prenom;
+    private $acteur;
     private $idFilm;
 
 
-    public function __construct($idRole = null, string $personnage, $nom, $prenom, $idFilm = null)
+    public function __construct($idRole = null, string $personnage, $acteur, $idFilm = null)
     {
 
         $this->idRole = $idRole;
         $this->personnage = $personnage;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+        $this->acteur = $acteur;
         $this->idFilm = $idFilm;
     }
 
@@ -32,13 +30,9 @@ class Role
     {
         return $this->personnage;
     }
-    public function getNom()
+    public function getActeur()
     {
-        return $this->nom;
-    }
-    public function getPreom()
-    {
-        return $this->prenom;
+        return $this->acteur;
     }
 
     public function getIdFilm()
@@ -58,14 +52,9 @@ class Role
         $this->personnage = $personnage;
     }
 
-    public function setNom($nom)
+    public function setActeur($acteur)
     {
-        $this->nom = $nom;
-    }
-
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
+        $this->acteur = $acteur;
     }
 
     public function setIdFilm($idFilm)

@@ -74,7 +74,7 @@ class FilmsDAO extends Dao
         WHERE idFilm = :idFilm');
         $query->execute(array(':idFilm' => $idFilm));
         while ($data = $query->fetch()) {
-            $listeActeur[] = new Role($data['idRole'], $data['personnage'], $data['nom'], $data['prenom'], $data['idFilm']);
+            $listeActeur[] = new Role($data['idRole'], $data['personnage'], $data['acteur'], $data['idFilm']);
         }
         return ($listeActeur);
     }
