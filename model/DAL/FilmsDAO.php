@@ -64,33 +64,18 @@ class FilmsDAO extends Dao
         $query->execute(array(':idFilm' => $idFilm));
         return ($query->rowCount());
     }
-    // Requetage pour avoir tous les acteurs et leurs roles //
-    public function getAllActeur()
+    // Requete pour afficher les acteurs et leurs role par rapport a l'idFilm //
+
+    public function acteurFilm($idFilm)
     {
-
-        $query = $this->_bdd->prepare("SELECT idFilm , personnage, nom, prenom FROM role INNER JOIN acteurs ON role.idActeur = acteurs.idActeur ");
-        $query->execute();
-        $acteurs = array();
-
+        $listeActeur = [];
+        $query = $this->_bdd->prepare('SELECT idFilm, nom, prenom, acteurs.idActeur, personnage, idRole FROM role 
+        INNER JOIN acteurs ON role.idActeur = acteurs.idActeur
+        WHERE idFilm = :idFilm');
+        $query->execute(array(':idFilm' => $idFilm));
         while ($data = $query->fetch()) {
-            // a Confirmer //
-            array_push($acteurs, array('idFilm' => $data['idFilm'], $data['nom'], $data['prenom'], $data['personnage']));
+            $listeActeur[] = new Role($data['idRole'], $data['personnage'], $data['nom'], $data['prenom'], $data['idFilm']);
         }
-        return ($acteurs);
-    }
-
-    public function getActeurFilm($idFilm)
-    {
-        //meme requete que getAllActeur renvoie requete avec idFilm where $idFilm = acteur.idFilm // 
-        // a Confirmer //
-        $query = $this->_bdd->prepare("SELECT idFilm , personnage, nom, prenom FROM role INNER JOIN acteurs ON role.idActeur = acteurs.idActeur WHERE $idFilm = acteurs.idFilm");
-        $query->execute();
-        $acteurs = array();
-
-        while ($data = $query->fetch()) {
-            // a Confirmer //
-            array_push($acteurs, array('idFilm' => $data['idFilm'], $data['nom'], $data['prenom'], $data['personnage']));
-        }
-        return ($acteurs);
+        return ($listeActeur);
     }
 }
