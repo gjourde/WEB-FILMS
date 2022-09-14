@@ -4,17 +4,23 @@
 // Extends Film ??? //
 class Acteurs
 {
-
+    private $idActeur;
     private $nom;
     private $prenom;
 
-    public function __construct(string $nom, string $prenom)
+    public function __construct($idActeur = null, string $nom, string $prenom)
     {
+        $this->idActeur = $idActeur;
         $this->nom = $nom;
         $this->prenom = $prenom;
     }
 
     // GETTER //
+
+    public function getIdActeur()
+    {
+        return $this->idActeur;
+    }
 
     public function getNom()
     {
@@ -36,5 +42,10 @@ class Acteurs
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
+    }
+
+    public function setIdActeur($idActeur)
+    {
+        $this->idActeur = $idActeur;
     }
 }

@@ -4,37 +4,37 @@
 
 class Role
 {
-    private $personnage;
     private $idRole;
+    private $personnage;
 
-    public function __construct(string $personnage, int $idRole)
+
+    public function __construct($idRole = null, string $personnage)
     {
-        $this->personnage = $personnage;
         $this->idRole = $idRole;
+        $this->personnage = $personnage;
     }
 
     // GETTER //
-
-    public function getPersonnage()
-    {
-        return $this->personnage;
-    }
-
 
     public function getIdRole()
     {
         return $this->idRole;
     }
 
-    // SETTER // 
-
-    public function setPersonnage($personnage)
+    public function getPersonnage()
     {
-        $this->personnage = $personnage;
+        return $this->personnage;
     }
+
+    // SETTER // 
 
     public function setIdRole($idRole)
     {
         $this->idRole = $idRole;
+    }
+
+    public function setPersonnage($personnage)
+    {
+        $this->personnage = $personnage;
     }
 }
