@@ -51,8 +51,11 @@ class UserDAO extends Dao
         $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.email = :email');
         $query->execute(array(':email' => $email));
         $data = $query->fetch();
-        $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
-        // Voir si Fetch return un resultat si null //
+        if ($data) {
+            $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
+        } else {
+            $user = null;
+        }
         return ($user);
     }
 }
