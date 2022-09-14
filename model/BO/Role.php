@@ -6,12 +6,15 @@ class Role
 {
     private $idRole;
     private $personnage;
+    private $acteur;
 
 
-    public function __construct($idRole = null, string $personnage)
+    public function __construct($idRole = null, string $personnage, $acteur)
     {
+
         $this->idRole = $idRole;
         $this->personnage = $personnage;
+        $this->acteur = $acteur;
     }
 
     // GETTER //
@@ -25,6 +28,10 @@ class Role
     {
         return $this->personnage;
     }
+    public function getActeur()
+    {
+        return $this->acteur;
+    }
 
     // SETTER // 
 
@@ -36,5 +43,14 @@ class Role
     public function setPersonnage($personnage)
     {
         $this->personnage = $personnage;
+    }
+
+
+    /**
+     * Set the value of acteur
+     */
+    public function setActeur($acteur)
+    {
+        $this->acteur = $acteur;
     }
 }

@@ -9,14 +9,16 @@ class Films
     private $realisateur;
     private $affiche;
     private $annee;
+    private $tabRole;
 
-    public function __construct(int $idFilm = null, string $titre, string $realisateur, $affiche, int $annee)
+    public function __construct(int $idFilm = null, string $titre, string $realisateur, $affiche, int $annee, $tabRole = [])
     {
         $this->idFilm = $idFilm;
         $this->titre = $titre;
         $this->realisateur = $realisateur;
         $this->affiche = $affiche;
         $this->annee = $annee;
+        $this->tabRole = $tabRole;
     }
 
     // GETTER //
@@ -43,6 +45,10 @@ class Films
     public function getAnnee()
     {
         return $this->annee;
+    }
+    public function getTabRole()
+    {
+        return $this->tabRole;
     }
 
     // SETTER //
@@ -75,5 +81,10 @@ class Films
     public function setAnnee($annee)
     {
         $this->annee = $annee;
+    }
+
+    public function setTabRole($tabRole)
+    {
+        $this->tabRole = $tabRole;
     }
 }
