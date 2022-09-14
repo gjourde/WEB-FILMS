@@ -65,7 +65,8 @@ class FilmsDAO extends Dao
         return ($query->rowCount());
     }
     // Requete pour afficher les acteurs et leurs role par rapport a l'idFilm //
-    public function ActeurFilm($idFilm)
+
+    public function acteurFilm($idFilm)
     {
         $listeActeur = [];
         $query = $this->_bdd->prepare('SELECT idFilm, nom, prenom, acteurs.idActeur, personnage, idRole FROM role 
