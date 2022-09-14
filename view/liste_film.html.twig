@@ -1,0 +1,34 @@
+<div>
+	{% for film in allFilms %}
+		{# Formulaire de suppression d'offre #}
+		<form action="supprimer_film" method="post">
+			<div class="container">
+				<button type="submit">Supprimer film</button>
+				<label for="titre">
+					<b>
+						{{film.getTitre}}
+						:
+					</b>
+				</label>
+				<label for="realisteur">
+					<b>
+						{{film.getRealisateur}}</b>
+				</label>
+				<label for="affiche">
+					<b>
+						{{film.getAffiche}}</b>
+				</label>
+				<label for="annee">
+					<b>
+						{{film.getAnnee}}</b>
+				</label>
+				<input value="{{film.getIdFilm}}" name="id" type="hidden">
+			</div>
+		</form>
+	{% endfor %}
+</div>
+
+<button>
+	<a href="affichageFilms" style="text-decoration : none;">
+		Retour</a>
+</button>
