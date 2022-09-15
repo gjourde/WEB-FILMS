@@ -5,11 +5,11 @@ TODO :
 - [x] ClassDAO FilmsDAO et UsersDAO => Kris
 - [x] UserDAO->getUser("email") qui renvoye null si pas d'user trouvé
 - [ ] Controller afficheFilms.php 
-- [ ] Controller header, footer, erreur.php => darko
-- [ ] Vue header, footer, erreur.twig (avec paramètre) => darko
+- [x] Controller header, footer, erreur.php => darko
+- [x] Vue header, footer, erreur.twig (avec paramètre) => darko
 - [ ] Vue affichageFilms.twig
-- [ ] Controller connexion.php/vue connexion.twig + erreur => Guillaume
+- [x] Controller connexion.php/vue connexion.twig + erreur => Guillaume
   $_SESSION["email"] + $_SESSION["mdp"]
-- [ ] Faire le "remember me" en $_SESSION => Guillaume
-- [ ] Controller cree_compte + vue + erreur 
-- [ ] ...
+- [x] Faire le "remember me" en $_SESSION => Guillaume
+- [x] Controller cree_compte + vue + erreur 
+- [ ] Penser à commenter le code
