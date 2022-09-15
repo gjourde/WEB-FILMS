@@ -26,8 +26,6 @@ class FilmsDAO extends Dao
             $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films WHERE titre = :titre");
             $query->execute(array(':titre' => $titre));
         }
-        $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
-        $query->execute();
         $films = array();
         while ($data = $query->fetch()) {
             $roles = $this->getRole(($data['idFilm']));
@@ -93,8 +91,8 @@ class FilmsDAO extends Dao
 
     public function addRole($data)
     {
-        $valeurs = ['idActeur' => null, 'idFilm' => null, 'personnage' => $data->getPrenom()];
-        $requete = 'INSERT INTO acteurs (idActeur, nom, prenom) VALUES (:idActeur, :nom, :prenom)';
+        $valeurs = ['idActeur' => null, 'idFilm' => null, 'personnage' => $data->getPersonnage(), 'idRole' => null, 'test' => 0];
+        $requete = 'INSERT INTO role (idActeur, idFilm, personnage, idRole, test) VALUES (:idActeur, :idFilm, :personnage, :idRole, :test)';
         $insert = $this->_bdd->prepare($requete);
         if (!$insert->execute($valeurs)) {
             return false;
