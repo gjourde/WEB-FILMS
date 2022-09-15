@@ -23,8 +23,8 @@ class FilmsDAO extends Dao
             $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
             $query->execute();
         } else {
-            $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films WHERE titre = :titre");
-            $query->execute(array(':titre' => $titre));
+            $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films WHERE titre LIKE :titre");
+            $query->execute(array(':titre' => $titre.'%'));
         }
         $films = array();
         while ($data = $query->fetch()) {
