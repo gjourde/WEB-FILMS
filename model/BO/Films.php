@@ -11,7 +11,7 @@ class Films
     private $annee;
     private $tabRole;
 
-    public function __construct(int $idFilm = null, string $titre, string $realisateur, $affiche, int $annee, $tabRole = [])
+    public function __construct($idFilm = null, string $titre, string $realisateur, $affiche, int $annee, $tabRole = [])
     {
         $this->idFilm = $idFilm;
         $this->titre = $titre;
