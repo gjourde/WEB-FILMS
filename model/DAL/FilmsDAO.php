@@ -15,10 +15,17 @@ class FilmsDAO extends Dao
 {
 
     // Récupérer tous les films avec les Jointure affichées //
-    public function getAll()
+    public function getAll($titre = null)
     {
         //On définit la bdd pour la fonction //
         // Probleme de doublon de Film //
+        if ($titre == null) {
+            $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
+            $query->execute();
+        } else {
+            $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films WHERE titre = :titre");
+            $query->execute(array(':titre' => $titre));
+        }
         $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
         $query->execute();
         $films = array();
@@ -52,7 +59,7 @@ class FilmsDAO extends Dao
         return $acteur;
     }
 
-    //Ajouter un Film ICI //
+    // Ajouter un Film a la BDD //
 
     public function add($data)
     {
@@ -62,6 +69,34 @@ class FilmsDAO extends Dao
         $insert = $this->_bdd->prepare($requete);
         if (!$insert->execute($valeurs)) {
             //print_r($insert->errorInfo());
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // Ajouter un Acteur a la BDD //
+
+    public function addActeur($data)
+    {
+        $valeurs = ['idActeur' => null, 'nom' => $data->getNom(), 'prenom' => $data->getPrenom()];
+        $requete = 'INSERT INTO acteurs (idActeur, nom, prenom) VALUES (:idActeur, :nom, :prenom)';
+        $insert = $this->_bdd->prepare($requete);
+        if (!$insert->execute($valeurs)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // Ajouter un Role a la BDD //
+
+    public function addRole($data)
+    {
+        $valeurs = ['idActeur' => null, 'idFilm' => null, 'personnage' => $data->getPrenom()];
+        $requete = 'INSERT INTO acteurs (idActeur, nom, prenom) VALUES (:idActeur, :nom, :prenom)';
+        $insert = $this->_bdd->prepare($requete);
+        if (!$insert->execute($valeurs)) {
             return false;
         } else {
             return true;
