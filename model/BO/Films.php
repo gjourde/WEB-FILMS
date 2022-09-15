@@ -16,7 +16,7 @@ class Films
         $this->idFilm = $idFilm;
         $this->titre = $titre;
         $this->realisateur = $realisateur;
-        $this->affiche = $affiche;
+        $this->setAffiche($affiche);
         $this->annee = $annee;
         $this->tabRole = $tabRole;
     }
