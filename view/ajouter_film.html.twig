@@ -14,34 +14,37 @@
 					<input type="text" name="affiche" placeholder="Lien image">
 					<input type="text" name="annee" placeholder="Année de réalisation" required>
 					<button type="submit" class="btn btn-primary mx-3 mb-1">Ajouter un film</button>
-					<hr></hr>
+					<hr>
 
+				</div>
 			</div>
-		</div>
 
-		<div class="container text-center w-80">
-			<div class="row">
+			<div class="container text-center w-80">
+				<div class="row">
+					<div class="col-12" id="containerRoles"></div>
 
-
-				<div class="col-12" id="containerRoles"></div>
-
+				</div>
 			</div>
-		</div>
 
-	</form>
-</div>{% else %}
-<p>{{status}}
-	:</p>
-{% if film is defined %}
-	<p>{{film.getTitre}}</p>
-	<p>{{film.getRealisateur}}</p>
-	<p><img src="{{film.getAffiche}}" class="d-block w-100" style="height:auto;" alt="{{film.getAffiche}}"></p>
-	<p>{{film.getAnnee}}</p>
-{% endif %}{% endif %}<div class="container text-center mt-5">
+		</form>
+	</div>
+{% else %}
+	<p>{{status}}
+		:</p>
+	{% if film is defined %}
+		<p>{{film.getTitre}}</p>
+		<p>{{film.getRealisateur}}</p>
+		<p><img src="{{film.getAffiche}}" class="d-block w-100" style="height:auto;" alt="{{film.getAffiche}}"></p>
+		<p>{{film.getAnnee}}</p>
+	{% endif %}
+{% endif %}
+<div class="container text-center mt-5">
 
-<button>
-	<a href="affichageFilms" class="text-reset text-decoration-none">Retour</a>
-</button>
-<button>
-	<a href="liste_film" class="text-reset text-decoration-none">Aller a suppression</a>
-</button></div><script src="./view/web/js/app.js" defer></script>
+	<button>
+		<a href="affichageFilms" class="text-reset text-decoration-none">Retour</a>
+	</button>
+	<button>
+		<a href="liste_film" class="text-reset text-decoration-none">Aller a suppression</a>
+	</button>
+</div>
+<script src="./view/web/js/app.js" defer></script>
