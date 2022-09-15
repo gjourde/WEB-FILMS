@@ -1,35 +1,88 @@
-<div class="container">
-    <div class="row">
-        <div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
-            <form action="" method="post">
-                <h2>Créer votre compte</h2>
+{% if query is not defined %}
+	<div class="container">
+		<div class="row">
+			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+				<form action="" method="post">
+					<h2>Créer votre compte</h2>
+					<div class="row">
+						<div class="col-10 mb-2">
+							<div class="mb-3">
+								{% if status is defined %}
+									{% if status == 'deja' %}
+										<label for="email" class="form-label text-danger ">Adresse mail :</label>
+									{% else %}
+										<label for="email" class="form-label">Adresse mail :</label>
+									{% endif %}
+								{% else %}
+									<label for="email" class="form-label">Adresse mail :</label>
+								{% endif %}
 
-                <div class="row">
-                    <div class="col-10 mb-2">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Adresse mail :</label>
-                            <input name="email" type="email" class="form-control mb-2" id="email"
-                                placeholder="name@example.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="userName" class="form-label">Nom d'utilisateur :</label>
-                            <input name="userName" type="text" class="form-control mb-2" id="userName"
-                                placeholder="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="mdp1" class="form-label">Mode de passe :</label>
-                            <input name="mdp1" type="text" class="form-control mb-2" id="mdp1" placeholder="">
-                            <label for="mdp2" class="form-label">Saisir à nouveau votre mode de passe :</label>
-                            <input name="mdp2" type="text" class="form-control mb-2" id="mdp2" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <button type="submit" class="btn btn-primary mb-3">Valider</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+								<input name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com" required>
+							</div>
+							<div class="mb-3">
+								<label for="userName" class="form-label">Nom d'utilisateur :</label>
+								<input name="userName" type="text" class="form-control mb-2" id="userName" placeholder="name">
+							</div>
+							<div class="mb-3">
+								{% if status is defined %}
+									{% if status == 'mdp' %}
+										<label for="mdp1" class="form-label text-danger">Mode de passe :</label>
+									{% else %}
+										<label for="mdp1" class="form-label">Mode de passe :</label>
+									{% endif %}
+								{% else %}
+									<label for="mdp1" class="form-label">Mode de passe :</label>
+								{% endif %}
+								<input name="mdp1" type="password" class="form-control mb-2" id="mdp1" placeholder="" required>
+
+								{% if status is defined %}
+									{% if status == 'mdp' %}
+										<label for="mdp2" class="form-label text-danger">Saisir à nouveau votre mode de passe :</label>
+									{% else %}
+										<label for="mdp2" class="form-label">Saisir à nouveau votre mode de passe :</label>
+									{% endif %}
+								{% else %}
+									<label for="mdp2" class="form-label">Saisir à nouveau votre mode de passe :</label>
+								{% endif %}
+								<input name="mdp2" type="password" class="form-control mb-2" id="mdp2" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col mb-3">
+							<button type="submit" class="btn btn-primary mb-3">Valider</button>
+						</div>
+					</div>
+					{% if status is defined %}
+						{% if status == 'deja' %}
+							<div class="container">
+								<div class="row">
+									<div class="col shadow-lg p-3 mb-5 bg-body rounded">
+										<label class="form-label text-danger">l'utilisateur existe déjà</label>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						{% if status == 'mdp' %}
+							<div class="container">
+								<div class="row">
+									<div class="col shadow-lg p-3 mb-5 bg-body rounded">
+										<label class="form-label text-danger">Les mots de passe doivent être identique</label>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endif %}
+				</form>
+			</div>
+		</div>
+	</div>
+{% else %}
+	<div class="container">
+		<div class="row">
+			<div class="col shadow-lg p-3 mb-5 bg-body rounded">
+				<label class="form-label text-success">Votre compte a bien été créé</label>
+			</div>
+		</div>
+	</div>
+{% endif %}
