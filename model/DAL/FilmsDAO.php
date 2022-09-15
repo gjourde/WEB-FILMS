@@ -138,10 +138,11 @@ class FilmsDAO extends Dao
     public function deleteOne($idFilm): int
     // A coder //
     {
-        $query = $this->_bdd->prepare('DELETE FROM films WHERE films.idFilm = :idFilm');
+        $query = $this->_bdd->prepare('DELETE films, role, acteurs FROM films INNER JOIN role INNER JOIN acteurs ON films.idFilm = role.idFilm AND role.idActeur = acteurs.idActeur  WHERE films.idFilm = :idFilm');
         $query->execute(array(':idFilm' => $idFilm));
         return ($query->rowCount());
     }
+
     // Requete pour afficher les acteurs et leurs role par rapport a l'idFilm //
 
     public function acteurFilm($idFilm)
@@ -157,3 +158,12 @@ class FilmsDAO extends Dao
         return ($listeActeur);
     }
 }
+/*
+
+public function deleteOne($idFilm): int
+    // A coder //
+    {
+        $query = $this->_bdd->prepare('DELETE FROM films WHERE films.idFilm = :idFilm');
+        $query->execute(array(':idFilm' => $idFilm));
+        return ($query->rowCount());
+    } */
