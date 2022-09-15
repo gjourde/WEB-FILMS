@@ -5,7 +5,6 @@ $filmsDao = new FilmsDAO();
 // /* @var $alloffers type */
 if (isset($_POST["search"])) {
     $allFilms = $filmsDao->getAll($_POST["search"]);
-    print_r($allFilms);
 } else {
     $allFilms = $filmsDao->getAll();
 }
