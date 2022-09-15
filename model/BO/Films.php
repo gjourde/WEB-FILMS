@@ -73,7 +73,7 @@ class Films
     {
         // Fonction affichage d'une image par defaut si $affiche = " NULL " //
         if ($affiche == null) {
-            $this->affiche = 'https://www.wallpaperuse.com/vifr/iimhow/';
+            $this->affiche = 'http://www.theprintworks.com/wp-content/themes/psBella/assets/img/film-poster-placeholder.png';
         } else
             $this->affiche = $affiche;
     }
