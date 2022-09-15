@@ -77,6 +77,19 @@ class FilmsDAO extends Dao
         return $acteur;
     }
 
+    public function getActeurBy($nom, $prenom)
+    {
+        $query = $this->_bdd->prepare('SELECT * FROM acteurs 
+        WHERE nom = :nom AND prenom = :prenom');
+        $query->execute(array(':nom' => $nom, ':prenom' => $prenom));
+        $data = $query->fetch();
+        if ($data) {
+            $acteur = new Acteurs($data['idActeur'], $data['nom'], $data['prenom']);
+        } else {
+            $acteur = null;
+        }
+        return $acteur;
+    }
     // Ajouter un Film a la BDD //
 
     public function add($data)
@@ -97,6 +110,7 @@ class FilmsDAO extends Dao
 
     public function addActeur($data)
     {
+        // $acteur = $this->getActeur($data->getIdActeur()); //
         $valeurs = ['idActeur' => null, 'nom' => $data->getNom(), 'prenom' => $data->getPrenom()];
         $requete = 'INSERT INTO acteurs (idActeur, nom, prenom) VALUES (:idActeur, :nom, :prenom)';
         $insert = $this->_bdd->prepare($requete);
@@ -108,6 +122,8 @@ class FilmsDAO extends Dao
             return $id;
         }
     }
+
+
 
     // Ajouter un Role a la BDD //
     public function addRole($data)
@@ -127,43 +143,41 @@ class FilmsDAO extends Dao
 
     public function getOne($idFilm)
     {
-
-        $query = $this->_bdd->prepare('SELECT * FROM films WHERE films.id = :idFilm')->fetch(PDO::FETCH_ASSOC);
+        $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films WHERE idFilm = :idFilm");
         $query->execute(array(':idFilm' => $idFilm));
-        $data = $query->fetch();
-        $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+        $films = array();
+        while ($data = $query->fetch()) {
+            $roles = $this->getRole(($data['idFilm']));
+            $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $roles);
+        }
         return ($films);
     }
     // Fonction pour delete un Film  //
     public function deleteOne($idFilm): int
     // A coder //
     {
-        $query = $this->_bdd->prepare('DELETE films, role, acteurs FROM films INNER JOIN role INNER JOIN acteurs ON films.idFilm = role.idFilm AND role.idActeur = acteurs.idActeur  WHERE films.idFilm = :idFilm');
-        $query->execute(array(':idFilm' => $idFilm));
-        return ($query->rowCount());
-    }
-
-    // Requete pour afficher les acteurs et leurs role par rapport a l'idFilm //
-
-    public function acteurFilm($idFilm)
-    {
-        $listeActeur = [];
-        $query = $this->_bdd->prepare('SELECT idFilm, nom, prenom, acteurs.idActeur, personnage, idRole FROM role 
-        INNER JOIN acteurs ON role.idActeur = acteurs.idActeur
-        WHERE idFilm = :idFilm');
-        $query->execute(array(':idFilm' => $idFilm));
-        while ($data = $query->fetch()) {
-            $listeActeur[] = new Role($data['idRole'], $data['personnage'], $data['acteur'], $data['idFilm']);
+        $data = $this->getOne($idFilm);
+        $roles = $data->getTabRole();
+        foreach ($roles as $role) {
+            $idRole = $role->getIdRole();
+            $this->deleteRole($idRole);
         }
-        return ($listeActeur);
-    }
-}
-/*
-
-public function deleteOne($idFilm): int
-    // A coder //
-    {
         $query = $this->_bdd->prepare('DELETE FROM films WHERE films.idFilm = :idFilm');
         $query->execute(array(':idFilm' => $idFilm));
         return ($query->rowCount());
-    } */
+    }
+
+    public function deleteActeur($idActeur): int
+    {
+        $query = $this->_bdd->prepare('DELETE FROM acteurs WHERE acteurs.idActeur = :idActeur');
+        $query->execute(array(':idActeur' => $idActeur));
+        return ($query->rowCount());
+    }
+
+    public function deleteRole($idRole): int
+    {
+        $query = $this->_bdd->prepare('DELETE FROM role WHERE role.idRole = :idRole');
+        $query->execute(array(':idRole' => $idRole));
+        return ($query->rowCount());
+    }
+}

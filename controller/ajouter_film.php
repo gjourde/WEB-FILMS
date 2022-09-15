@@ -10,9 +10,12 @@ if (isset($_SESSION['email'])) {
             $film = $filmsDao->lastRowFilm();
             //On affiche le template Twig correspondant
             for ($i = 1; $i < $_POST['nbRole']; $i++) {
-                $acteur = new Acteurs(null, $_POST['saisieNom' . $i], $_POST['saisiePrenom' . $i]);
-                $id = $filmsDao->addActeur($acteur);
-                $acteur->setIdActeur($id);
+                $acteur = $filmsDao->getActeurBy($_POST['saisieNom' . $i], $_POST['saisiePrenom' . $i]);
+                if ($acteur == null) {
+                    $acteur = new Acteurs(null, $_POST['saisieNom' . $i], $_POST['saisiePrenom' . $i]);
+                    $id = $filmsDao->addActeur($acteur);
+                    $acteur->setIdActeur($id);
+                }
                 $roles[] = new Role($acteur, $film->getIdFilm(), $_POST['saisiePersonnage' . $i], null);
             }
             foreach ($roles as  $role) {

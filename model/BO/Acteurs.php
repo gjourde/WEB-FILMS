@@ -8,7 +8,7 @@ class Acteurs
     private $nom;
     private $prenom;
 
-    public function __construct($idActeur = null,  $prenom = null,  $nom = null)
+    public function __construct($idActeur = null, $nom = null, $prenom = null)
     {
         $this->idActeur = $idActeur;
         $this->prenom = $prenom;
