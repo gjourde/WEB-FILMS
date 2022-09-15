@@ -33,6 +33,26 @@ class FilmsDAO extends Dao
         }
         return ($films);
     }
+
+
+    public function lastRowFilm()
+    {
+        $query = $this->_bdd->prepare("SELECT * FROM films ORDER BY idFilm DESC LIMIT 1");
+        $query->execute();
+        $data = $query->fetch();
+        $films = new Films($data['idFilm'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+        return ($films);
+    }
+
+    public function lastRowActeur()
+    {
+        $query = $this->_bdd->prepare("SELECT * FROM acteurs ORDER BY idActeur DESC LIMIT 1");
+        $query->execute();
+        $data = $query->fetch();
+        $acteur = new Acteurs($data['idActeur'], $data['nom'], $data['prenom']);
+        return ($acteur);
+    }
+
     // Recuperation des role avec l'acteur //
     public function getRole($idFilm)
     {
@@ -83,15 +103,17 @@ class FilmsDAO extends Dao
         if (!$insert->execute($valeurs)) {
             return false;
         } else {
-            return true;
+            $acteur = $this->lastRowActeur();
+            $id = $acteur->getIdActeur();
+            return $id;
         }
     }
 
     // Ajouter un Role a la BDD //
-
     public function addRole($data)
     {
-        $valeurs = ['idActeur' => null, 'idFilm' => null, 'personnage' => $data->getPersonnage(), 'idRole' => null, 'test' => 0];
+        $acteur = $data->getActeur();
+        $valeurs = ['idActeur' => $acteur->getIdActeur(), 'idFilm' => $data->getIdFilm(), 'personnage' => $data->getPersonnage(), 'idRole' => null, 'test' => 0];
         $requete = 'INSERT INTO role (idActeur, idFilm, personnage, idRole, test) VALUES (:idActeur, :idFilm, :personnage, :idRole, :test)';
         $insert = $this->_bdd->prepare($requete);
         if (!$insert->execute($valeurs)) {
