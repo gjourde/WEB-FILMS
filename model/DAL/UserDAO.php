@@ -6,8 +6,6 @@ class UserDAO extends Dao
     //Récupérer tous les Users //
     public function getAll()
     {
-        //On définit la bdd pour la fonction
-
         $query = $this->_bdd->prepare("SELECT idUser, userName, email, password FROM user");
         $query->execute();
         $user = array();
@@ -18,7 +16,7 @@ class UserDAO extends Dao
         return ($user);
     }
 
-    //Ajouter un User ICI //
+    //Ajouter un User //
 
     public function add($data)
     {
@@ -27,14 +25,14 @@ class UserDAO extends Dao
         $requete = 'INSERT INTO user (idUser, userName, email, password) VALUES (:idUser , :userName , :email , :password)';
         $insert = $this->_bdd->prepare($requete);
         if (!$insert->execute($valeurs)) {
-            //print_r($insert->errorInfo());
             return false;
         } else {
             return true;
         }
     }
 
-    //Récupérer plus d'info sur 1 User
+    //Récupérer plus d'info sur un User //
+
     public function getOne($idUser)
     {
 
