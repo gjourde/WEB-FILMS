@@ -1,7 +1,7 @@
 {% if query is not defined %}
 	<div class="container">
 		<div class="row">
-			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+			<div class="col-4 shadow-lg p-3 mb-5 bg-body rounded offset-4">
 				<form action="" method="post">
 					<h2>Créer votre compte</h2>
 					<div class="row">
@@ -19,10 +19,11 @@
 
 								<input name="email" type="email" class="form-control mb-2" id="email" placeholder="name@example.com" required>
 							</div>
-							<div class="mb-3">
+							<div class="mb-4">
 								<label for="userName" class="form-label">Nom d'utilisateur :</label>
-								<input name="userName" type="text" class="form-control mb-2" id="userName" placeholder="name">
+								<input name="userName" type="text" class="form-control mb-2" id="userName" placeholder="Saisir votre nom">
 							</div>
+							<hr>
 							<div class="mb-3">
 								{% if status is defined %}
 									{% if status == 'mdp' %}
@@ -44,8 +45,9 @@
 								{% else %}
 									<label for="mdp2" class="form-label">Saisir à nouveau votre mode de passe :</label>
 								{% endif %}
-								<input name="mdp2" type="password" class="form-control mb-2" id="mdp2" placeholder="" required>
+								<input name="mdp2" type="password" class="form-control mb-4" id="mdp2" placeholder="" required>
 							</div>
+							<hr>
 						</div>
 					</div>
 					<div class="row">
@@ -80,7 +82,7 @@
 {% else %}
 	<div class="container">
 		<div class="row">
-			<div class="col shadow-lg p-3 mb-5 bg-body rounded">
+			<div class="col-4 shadow-lg p-3 mb-5 bg-body rounded offset-4">
 				<label class="form-label text-success">Votre compte a bien été créé</label>
 			</div>
 		</div>
