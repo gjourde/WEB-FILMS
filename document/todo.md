@@ -12,5 +12,5 @@ TODO :
   $_SESSION["email"] + $_SESSION["mdp"] => Guillaume
 - [x] Faire le "remember me" en $_SESSION => Guillaume
 - [x] Controller cree_compte + vue + erreur => Guillaume 
-- [ ] modifier le recherche avec lower =>Darko/Kris/Guillaume
+- [x] modifier le recherche avec lower =>Darko/Kris/Guillaume
 - [ ] Penser à commenter le code =>Darko/Kris/Guillaume
