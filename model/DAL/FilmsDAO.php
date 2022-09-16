@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Films
  *
@@ -14,14 +8,15 @@
 class FilmsDAO extends Dao
 {
 
-    // Récupérer tous les films avec les Jointure affichées //
+    // Récupérer le film grace a son titre dans la recherche, ou si pas de titre, ressort tous les film de la BDD //
+
     public function getAll($titre = null)
     {
-        //On définit la bdd pour la fonction //
-        // Probleme de doublon de Film //
+        // Si pas de titre //
         if ($titre == null) {
             $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films");
             $query->execute();
+            // avec titre //
         } else {
             $query = $this->_bdd->prepare("SELECT films.idFilm, titre, realisateur, affiche, annee FROM films WHERE LOWER(titre) LIKE LOWER(:titre)");
             $query->execute(array(':titre' => $titre . '%'));
@@ -34,6 +29,7 @@ class FilmsDAO extends Dao
         return ($films);
     }
 
+    // Derniere Ligne Film dans la BDD //
 
     public function lastRowFilm()
     {
@@ -44,6 +40,8 @@ class FilmsDAO extends Dao
         return ($films);
     }
 
+    // Derniere Ligne Acteur dans la BDD //
+
     public function lastRowActeur()
     {
         $query = $this->_bdd->prepare("SELECT * FROM acteurs ORDER BY idActeur DESC LIMIT 1");
@@ -53,7 +51,8 @@ class FilmsDAO extends Dao
         return ($acteur);
     }
 
-    // Recuperation des role avec l'acteur //
+    // Recuperation des roles avec iDFilm //
+
     public function getRole($idFilm)
     {
         $query = $this->_bdd->prepare('SELECT * FROM role 
@@ -67,6 +66,8 @@ class FilmsDAO extends Dao
         return ($roles);
     }
 
+    // Recuperation des acteurs avec idActeur //
+
     public function getActeur($idActeur)
     {
         $query = $this->_bdd->prepare('SELECT * FROM acteurs 
@@ -76,6 +77,8 @@ class FilmsDAO extends Dao
         $acteur = new Acteurs($data['idActeur'], $data['nom'], $data['prenom']);
         return $acteur;
     }
+
+    // Recuperation des acteurs avec le nom et le prenom //
 
     public function getActeurBy($nom, $prenom)
     {
@@ -110,7 +113,7 @@ class FilmsDAO extends Dao
 
     public function addActeur($data)
     {
-        // $acteur = $this->getActeur($data->getIdActeur()); //
+
         $valeurs = ['idActeur' => null, 'nom' => $data->getNom(), 'prenom' => $data->getPrenom()];
         $requete = 'INSERT INTO acteurs (idActeur, nom, prenom) VALUES (:idActeur, :nom, :prenom)';
         $insert = $this->_bdd->prepare($requete);
@@ -126,6 +129,7 @@ class FilmsDAO extends Dao
 
 
     // Ajouter un Role a la BDD //
+
     public function addRole($data)
     {
         $acteur = $data->getActeur();
@@ -139,7 +143,7 @@ class FilmsDAO extends Dao
         }
     }
 
-    //Récupérer plus d'info sur 1 Film //
+    //Récupérer un film avec role et acteurs associé //
 
     public function getOne($idFilm)
     {
@@ -152,9 +156,10 @@ class FilmsDAO extends Dao
         }
         return ($films);
     }
-    // Fonction pour delete un Film  //
+
+    // Supprimer un film //
+
     public function deleteOne($idFilm): int
-    // A coder //
     {
         $data = $this->getOne($idFilm);
         $roles = $data->getTabRole();
@@ -167,12 +172,16 @@ class FilmsDAO extends Dao
         return ($query->rowCount());
     }
 
+    // Supprimer un acteur // 
+
     public function deleteActeur($idActeur): int
     {
         $query = $this->_bdd->prepare('DELETE FROM acteurs WHERE acteurs.idActeur = :idActeur');
         $query->execute(array(':idActeur' => $idActeur));
         return ($query->rowCount());
     }
+
+    // Supprimer un role //
 
     public function deleteRole($idRole): int
     {
