@@ -1,7 +1,11 @@
+//Déclaration des HTMLElement
 let containerRoles = document.getElementById('containerRoles');
 let btnAjout = document.getElementById('btnAjout');
 let nbRole = document.getElementById('nbRole');
 
+/*
+ * Fonction pur la création du formulaire d'ajout des roles
+ */
 function creerRole() {
     let ajoutRole = document.createElement('button');
     ajoutRole.className = 'btn btn-primary mx-3';
@@ -35,9 +39,11 @@ function creerRole() {
     index++
 }
 
+//Le click sur le bouton Ajout du film
 btnAjout.addEventListener('click', () => {
     nbRole.value = index;
 })
 
+//Création du formulaire du Role n°1
 let index = 1;
 creerRole();
