@@ -1,6 +1,7 @@
 <?php
 
 // Creation classe Film //
+
 class Films
 {
 
@@ -22,6 +23,7 @@ class Films
     }
 
     // GETTER //
+
     public function getIdFilm()
     {
         return $this->idFilm;
