@@ -1,5 +1,5 @@
 {% if status is not defined %}
-	<div class="container text-center w-80">
+	<div class="container text-center w-80" style="background-color: #A9A9A9;">
 		<h2>
 			Ajouter un Film dans la Médiathèque
 		</h2>
@@ -25,8 +25,14 @@
 		</form>
 	</div>
 {% else %}
-	<p>{{status}}
-		:</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-3 shadow-lg p-3 mb-5 bg-body rounded">
+				<label class="form-label text-success">Ajout du Film confirmé</label>
+			</div>
+		</div>
+	</div>
+
 	{% if film is defined %}
 		<p>{{film.getTitre}}</p>
 		<p>{{film.getRealisateur}}</p>

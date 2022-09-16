@@ -1,6 +1,6 @@
 <div>
 	{% for film in allFilms %}
-		{# Formulaire de suppression d'offre #}
+
 		<form action="supprimer_film" method="post">
 			<div class="container">
 				<button type="submit">Supprimer film</button>
@@ -27,8 +27,11 @@
 		</form>
 	{% endfor %}
 </div>
-
-<button>
-	<a href="affichageFilms" style="text-decoration : none;">
-		Retour</a>
-</button>
+<div class="container text-center col-2 mt-5">
+	<div class="row">
+		<button>
+			<a href="affichageFilms" class="text-reset text-decoration-none">
+				Retour</a>
+		</button>
+	</div>
+</div>
