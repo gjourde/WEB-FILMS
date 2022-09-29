@@ -1,6 +1,5 @@
 <?php
-// Commentaire pour la demo GUILLAUME //
-// Controller pour afficher la liste des Films si session Ouverte //
+
 if (isset($_SESSION['email'])) {
     //On appelle la fonction getAll()
     $filmsDao = new FilmsDAO();
