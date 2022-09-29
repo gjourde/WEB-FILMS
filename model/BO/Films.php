@@ -76,8 +76,9 @@ class Films
         // Fonction affichage d'une image par defaut si $affiche = " NULL " //
         if ($affiche == null) {
             $this->affiche = 'http://www.theprintworks.com/wp-content/themes/psBella/assets/img/film-poster-placeholder.png';
-        } else
+        } else {
             $this->affiche = $affiche;
+        }
     }
 
     public function setAnnee($annee)
