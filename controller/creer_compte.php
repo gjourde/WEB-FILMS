@@ -11,7 +11,7 @@ if (isset($_POST['email']) and isset($_POST['userName']) and isset($_POST['mdp1'
             echo $twig->render('creer_compte.html.twig', ['status' => "mdp"]);
         } else {
             //Creation du nouveau compte et ajout en bdd
-            $newUser = new User(null, $_POST['userName'], $_POST['email'], $_POST['mdp1']);
+            $newUser = new User(null, $_POST['userName'], $_POST['email'], password_hash($_POST['mdp1'], PASSWORD_DEFAULT));
             $userDao->add($newUser);
             //Render avec le message compte créer
             echo $twig->render('creer_compte.html.twig', ['query' => "ok"]);

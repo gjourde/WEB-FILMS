@@ -23,7 +23,7 @@ if (isset($_SESSION['email'])) {
             $id = $user->getIdUser();
 
             //Vérification du login et mdp
-            if (($email == $_POST["email"]) && ($mdp == $_POST["mdp"])) {
+            if (($email == $_POST["email"]) && password_verify($_POST["mdp"], $mdp)) {
                 //Création de la session
                 $_SESSION['email'] = $email;
                 $_SESSION['userName'] = $userName;
