@@ -13,7 +13,7 @@ abstract class Dao
             $this->set_bdd(SPDO::getInstance());
             $this->_bdd->query("SET NAMES UTF8");
         } catch (Exception $e) {
-            echo "Problème de connexion à la base de donnée ...";
+            echo "Problème de connexion à la base de donnée : " . $e->getMessage() . '' . $e->getCode();
             die();
         }
     }
